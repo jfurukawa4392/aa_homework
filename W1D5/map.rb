@@ -5,7 +5,8 @@ class Map
   end
 
   def assign(key, value)
-    if self.lookup(key)
+    pair = self.lookup(key)
+    if pair
       pair.pop
       pair.push(value)
     else
@@ -16,7 +17,7 @@ class Map
   def lookup(key)
     @ivar.each do |pair|
       if pair.first == key
-        return pair.dup
+        return pair
       end
     end
 

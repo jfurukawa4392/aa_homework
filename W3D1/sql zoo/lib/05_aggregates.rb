@@ -22,18 +22,27 @@ end
 def continents
   # List all the continents - just once each.
   execute(<<-SQL)
+  select
+  distinct(continent)
+  from countries
   SQL
 end
 
 def africa_gdp
   # Give the total GDP of Africa.
   execute(<<-SQL)
+  select
+  sum(gdp)
+  from countries
+  group by continent
+  having continent = 'Africa'
   SQL
 end
 
 def area_count
   # How many countries have an area of more than 1,000,000?
   execute(<<-SQL)
+  
   SQL
 end
 

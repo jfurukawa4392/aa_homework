@@ -57,9 +57,9 @@ def large_neighbors
   continent
   from (
     select
-    name,
+    *
     from countries
-    where 
+    group by continent
   )
   SQL
 end

@@ -81,6 +81,10 @@ def num_teachers_and_mobiles
   # mobile phones.
   # NB: COUNT only counts non-NULL values.
   execute(<<-SQL)
+  select
+  count(teachers.name),
+  count(teachers.mobile)
+  from teachers
   SQL
 end
 
@@ -89,6 +93,12 @@ def dept_staff_counts
   # the number of staff. Structure your JOIN to ensure that the
   # Engineering department is listed.
   execute(<<-SQL)
+  select
+  depts.name,
+  count(teachers.name)
+  from teachers
+  right join depts on teachers.dept_id = depts.id
+  group by depts.name
   SQL
 end
 

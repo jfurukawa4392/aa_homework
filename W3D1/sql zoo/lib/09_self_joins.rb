@@ -202,6 +202,20 @@ def start_at_craiglockhart
   # by taking one bus, including 'Craiglockhart' itself. Include the stop name,
   # as well as the company and bus no. of the relevant service.
   execute(<<-SQL)
+  SELECT
+  distinct(a.name),
+  r.company,
+  r.num
+  from stops a
+  join routes r on r.stop_id = a.id
+  join (
+    select
+    distinct(n.company) as company,
+    n.num
+    from routes n
+    join stops on stops.id = n.stop_id
+    where stops.name = 'Craiglockhart'
+  ) f on f.company = r.company and f.num = r.num
   SQL
 end
 
@@ -210,5 +224,47 @@ def craiglockhart_to_sighthill
   # Sighthill. Show the bus no. and company for the first bus, the name of the
   # stop for the transfer, and the bus no. and company for the second bus.
   execute(<<-SQL)
+  select
+  f.num,
+  f.company,
+  f.name,
+  t.num,
+  t.company
+  from
+  (
+  SELECT
+  distinct(a.name) as name,
+  t.num,
+  t.company
+  from stops a
+  join routes k on a.id = k.stop_id
+  join (
+    select
+    n.company,
+    n.num
+    from routes n
+    join stops on stops.id = n.stop_id
+    where stops.name = 'Craiglockhart'
+  ) t on t.num = k.num and t.company = k.company
+  order by a.name
+  ) f
+  join
+  (
+  SELECT
+  distinct(a.name) as name,
+  r.num,
+  r.company
+  from stops a
+  join routes r on a.id = r.stop_id
+  join (
+    select
+    n.company,
+    n.num
+    from routes n
+    join stops on stops.id = n.stop_id
+    where stops.name = 'Sighthill'
+  ) t on t.num = r.num and t.company = r.company
+  order by a.name
+  ) t on f.name = t.name
   SQL
 end

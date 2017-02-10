@@ -104,10 +104,30 @@ class SQLObject
   end
 
   def update
+    # debugger
+    column_num = self.class.columns.length - 1
+    cols = questionify(self.class.columns)[1..-1].join(", ")
+    # col_vals = self.attribute_values[1..-1]
 
+    DBConnection.execute(<<-SQL, self.id)
+    UPDATE
+      #{self.class.table_name}
+    SET
+      #{cols}
+    WHERE
+      id = ?
+    SQL
   end
 
   def save
-    # ...
+    self.id.nil? ? self.insert : self.update
   end
+
+  private
+  def questionify(arr)
+    arr.map.with_index do |c, idx|
+      "#{c} = '#{attributes[c]}'"
+    end
+  end
+
 end

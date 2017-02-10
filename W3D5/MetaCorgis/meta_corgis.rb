@@ -107,13 +107,14 @@ class MetaCorgiSnacks
   def initialize(snack_box, box_id)
     @snack_box = snack_box
     @box_id = box_id
+    @snack_box.methods.grep(/^get_(.*)_info$/) { MetaCorgiSnacks.define_snack $1 }
   end
 
   def self.define_snack(snack)
     define_method(snack) do
       info = @snack_box.send("get_#{snack}_info", @box_id)
       tastiness = @snack_box.send("get_#{snack}_info", @box_id)
-      result = "#{name.capitalize}: #{info}: #{tastiness} "
+      result = "#{snack.capitalize}: #{info}: #{tastiness} "
       tastiness.to_i > 30 ? "* #{result}" : result
     end
   end

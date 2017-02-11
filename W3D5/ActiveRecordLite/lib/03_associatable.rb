@@ -10,31 +10,34 @@ class AssocOptions
   )
 
   def model_class
-    # ...
+    @class_name
   end
 
-  def table_name
-    @table_name = table_name
-  end
-end
-
-class BelongsToOptions < AssocOptions
   def initialize(name, options = {})
     defaults = {class_name: name.camelcase, primary_key: :id,
                 foreign_key: "#{name}_id".to_sym}
-
     overridden = defaults.merge(options)
 
     @class_name = overridden[:class_name]
     @primary_key = overridden[:primary_key]
     @foreign_key = overridden[:foreign_key]
-    @table_name = self.class.table_name
+  end
+
+  def table_name
+  end
+end
+
+class BelongsToOptions < AssocOptions
+  def initialize(name, options = {})
+    super(name, options)
   end
 end
 
 class HasManyOptions < AssocOptions
   def initialize(name, self_class_name, options = {})
-    # ...
+    options[:foreign_key] = "#{self_class_name.downcase.underscore}_id"
+                            .to_sym if options[:foreign_key].nil?
+    super(name.camelcase.singularize, options)
   end
 end
 

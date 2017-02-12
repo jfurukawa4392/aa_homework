@@ -1,18 +1,25 @@
 class BooksController < ApplicationController
   def index
-    # your code here
+    @books = Book.all
   end
 
   def new
-    # your code here
+
   end
 
   def create
-    # your code here
+    if Book.create(book_params)
+      redirect_to action: "index"
+    else
+      redirect_to action: :new
+    end
   end
 
   def destroy
-    # your code here
+    book = Book.find_by_id(params[:id])
+    book.delete
+
+    redirect_to action: "index"
   end
 
   private

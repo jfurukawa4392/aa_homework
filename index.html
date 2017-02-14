@@ -50,5 +50,35 @@
       </section>
       <footer>This page has a footer</footer>
     <!-- Original Recipe came stright from my brain-->
+    <section>
+      <form action="/reviews" method="post">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name">
+
+        <br>
+
+        <label for="rating">Rating:</label>
+        1<input type="radio" name="rating" value="1" checked>
+        2<input type="radio" name="rating" value="2">
+        3<input type="radio" name="rating" value="3">
+        4<input type="radio" name="rating" value="4">
+        5<input type="radio" name="rating" value="5">
+
+        <br>
+
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty" name="difficulty">
+          <option value="Select Cooking Difficulty" disabled="true" selected="true">::Select Cooking Difficulty::</option>
+          <option value="noob">Noob-tier</option>
+          <option value="middle">Mid-tier</option>
+          <option value="advanced">Advanced-tier</option>
+          <option value="god">God-tier</option>
+        </select>
+        <br>
+        <label>Review
+          <textarea name="review"></textarea>
+        </label>
+      </form>
+    </section>
   </body>
 </html>

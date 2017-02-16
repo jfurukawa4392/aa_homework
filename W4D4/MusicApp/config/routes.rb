@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :tracks
-  resources :albums
-  resources :bands
+  resources :tracks, except: [:index, :new]
+
+  resources :albums, except: [:index, :new] do
+    resources :tracks, only: :new
+  end
+
+  resources :bands do
+    resources :albums, only: :new
+  end
+
   resources :users, only: [:new, :create, :show, :index]
   resource :session, only: [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,6 +1,7 @@
 class BandsController < ApplicationController
   before_action :set_band, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_user
   # GET /bands
   # GET /bands.json
   def index

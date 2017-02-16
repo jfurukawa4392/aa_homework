@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_user
   # GET /albums
   # GET /albums.json
   def index

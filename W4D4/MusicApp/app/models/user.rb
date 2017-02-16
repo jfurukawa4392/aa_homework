@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   validates :email, :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
+  validates :password, length: { minimum: 5, allow_nil: true }
 
-  after_initialization :ensure_session_token
+  after_initialize :ensure_session_token
+
+  attr_reader :password
 
   def self.find_by_credentials(email, pw)
     user = User.find_by_email(email)

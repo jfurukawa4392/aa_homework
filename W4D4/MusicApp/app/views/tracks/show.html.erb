@@ -1,24 +1,29 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Album:</strong>
   <%= @track.album_id %>
 </p>
-
+<br>
 <p>
   <strong>Name:</strong>
   <%= @track.name %>
 </p>
-
+<br>
 <p>
   <strong>Track type:</strong>
   <%= @track.track_type %>
 </p>
-
+<br>
 <p>
   <strong>Lyrics:</strong>
   <%= @track.lyrics %>
 </p>
-
+<div>
+  <p>
+    User Notes:
+  </p>
+  <% @track.notes do |note| %>
+    <%= render note, note: note %>
+  <% end %>
+</div>
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>

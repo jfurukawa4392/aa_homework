@@ -2,12 +2,17 @@
 
 <p>
   <strong>Band:</strong>
-  <%= @album.band_id %>
+  <%= @album.band.name %>
 </p>
 
 <p>
   <strong>Title:</strong>
   <%= @album.title %>
+  <ul>
+    <% @album.tracks.each do |track| %>
+      <li><%= link_to track.name, track_url %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |

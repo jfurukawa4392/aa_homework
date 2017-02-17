@@ -3,6 +3,12 @@
 <p>
   <strong>Name:</strong>
   <%= @band.name %>
+  <br>
+  <ul>
+  <% @albums.each do |album| %>
+    <li><%= link_to album.title, album_url  %></li>
+  <% end %>
+</ul>
 </p>
 
 <%= link_to 'Edit', edit_band_path(@band) %> |

@@ -8,6 +8,7 @@ class TracksController < ApplicationController
   end
 
   def show
+    @track = Track.find(id: params[:id])
     render :show
   end
 

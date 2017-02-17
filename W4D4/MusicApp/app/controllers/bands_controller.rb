@@ -8,12 +8,12 @@ class BandsController < ApplicationController
     @bands = Band.all
   end
 
-  # GET /bands/1
-  # GET /bands/1.json
   def show
+    @band = Band.find(params[:id])
+    @albums = @band.albums
+    render :show
   end
 
-  # GET /bands/new
   def new
     @band = Band.new
   end

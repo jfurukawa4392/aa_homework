@@ -1,63 +1,55 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe User do
-  subject(:user) do
-    FactoryGirl.build(:user,
-      name: "jonathan",
-      password: "good_password")
-  end
-
+RSpec.describe User, type: :model do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:password_digest) }
-  it { should validate_length_of(:password).is_at_least(6) }
-
+  it { should validate_length_of(:password)
+        .is_at_least(6)
+        .on(:create)}
   it { should have_many(:subs) }
-  it { should have_many(:user_votes) }
   it { should have_many(:comments) }
+  it { should have_many(:user_votes) }
 
-  it "creates a password digest when a password is given" do
-    expect(user.password_digest).to_not be_nil
-  end
+  subject(:user) { User.new(name: 'Jesse', password: 'password') }
 
-  it "creates a session token before validation" do
-    user.valid?
-    expect(user.session_token).to_not be_nil
+  describe "#is_password?" do
+    context "when given the correct password" do
+      it "returns true if given text is password" do
+        expect(user.is_password?('password')).to be true
+      end
+    end
+
+    context "when given an incorrect password" do
+      it "returns false if given text is not password" do
+        expect(user.is_password?('notpassword')).to be false
+      end
+    end
   end
 
   describe "#reset_session_token!" do
-    it "sets a new session token on the user" do
-      user.valid?
-      old_session_token = user.session_token
+    it "returns a string" do
+      expect(user.reset_session_token!).to be_an_instance_of(String)
+    end
+
+    it "calls save on the user" do
+      expect(user).to receive(:save)
       user.reset_session_token!
-
-      # Miniscule chance this will fail.
-      expect(user.session_token).to_not eq(old_session_token)
     end
 
-    it "returns the new session token" do
-      expect(user.reset_session_token!).to eq(user.session_token)
-    end
-  end
-
-  describe "#is_password?" do
-    it "verifies a password is correct" do
-      expect(user.is_password?("good_password")).to be true
-    end
-
-    it "verifies a password is not correct" do
-      expect(user.is_password?("bad_password")).to be false
+    it "changes the session_token attribute on the user" do
+      first_token = user.session_token
+      user.reset_session_token!
+      expect(user.session_token).to_not eq(first_token)
     end
   end
 
-  describe ".find_by_credentials" do
-    before { user.save! }
-
-    it "returns user given good credentials" do
-      expect(User.find_by_credentials("jonathan", "good_password")).to eq(user)
-    end
-
-    it "returns nil given bad credentials" do
-      expect(User.find_by_credentials("jonathan", "bad_password")).to eq(nil)
+  describe "::find_by_credentials" do
+    context "with valid params" do
+      it "returns the user" do
+        User.create(name: 'Jesse', password: 'password')
+        expect(User.find_by_credentials('Jesse', 'password')).to be_an_instance_of(User)
+      end
     end
   end
+
 end

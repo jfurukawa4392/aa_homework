@@ -14,26 +14,25 @@ body {
 }
 
 button {
-	// background-color:
-	// border-color:
-	// color:
-	// font-weight:
-	// padding:
-	// border-radius:
+	background-color: $light-blue;
+	border-color: $blue;
+	color: white;
+	font-weight: bold;
+	padding: 7px;
+	border-radius: 3px;
 	// transition:
 	// font-family:
-	// text-transform:
+	text-transform: uppercase;
 	// font-size:
-	// text-align:
+	text-align: center;
 }
 
 a {
 	text-decoration: underline, $blue;
-
 }
 
 button:hover {
-	background-color: $dark-blue;
+	background-color: $dark-blue;;
 	border-color: $darkest-blue;
 }
 
@@ -46,6 +45,7 @@ hr {
 	height: 1px;
 	background-color: $light-gray;
 }
+
 
 .hr-top, .hr-bottom {
 	width: 100%;

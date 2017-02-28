@@ -1,0 +1,17 @@
+.section-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-nav ul{
+  display: flex;
+}
+
+.section-nav li{
+  margin: 3px 3px 3px 3px;
+}
+
+.section-nav li:last-of-type {
+  text-decoration: underline;
+}

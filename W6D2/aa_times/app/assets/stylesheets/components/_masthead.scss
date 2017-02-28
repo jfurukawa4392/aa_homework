@@ -7,14 +7,22 @@
 }
 
 .language-nav {
+	display: flex;
 	position: absolute;
-	top: -15px;
+	align-items: center;
+	top: -17px;
 	left: calc(50% - (177.78px/2));
 	background: white;
 	border: 1px solid $light-gray;
 	border-bottom: none;
 	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
+	border-top-right-radius: 1px;
+	padding-bottom: 1px;
+	height: 15px;
+}
+
+.language-nav ul {
+	display: flex;
 }
 
 .language-nav a {
@@ -25,8 +33,13 @@
 	color: $dark-gray;
 }
 
-.language-nav ul {
-	display: flex;
+.language-nav li:hover{
+	text-decoration: underline;
+}
+
+
+.language-nav li:first-of-type {
+	font-weight: bold;
 }
 
 .logo {
@@ -34,17 +47,31 @@
 	margin-top: 10px;
 }
 
+.masthead-links ul{
+	display: flex;
+}
+
 .masthead-links {
 	display: flex;
+	align-items: center;
 	font-family: $sans-serif;
 	font-size: 11px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .masthead-links li {
+	display: flex;
 	margin-left: 10px;
+	justify-content: center;
+	padding: 2px 2px 2px 2px;
 	border-right: 1px solid $light-gray;
+}
+
+.masthead-links li:last-of-type {
+	border-right: none;
 }
 
 .masthead-links button {
@@ -60,13 +87,15 @@
 }
 
 .masthead-links a,
-.masthead-links button, 
+.masthead-links button,
 .masthead-links time {
 	margin-right: 10px;
+	text-decoration: underline;
+
 }
 
 .masthead-links i {
-	margin-right: 5px;
+	margin-right: 2px;
 }
 
 .masthead-links strong {

@@ -2,14 +2,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 2px solid black;
 }
 
 .section-nav ul{
   display: flex;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .section-nav li{
-  margin: 3px 3px 3px 3px;
+  margin: 3px 15px 3px 3px;
 }
 
 .section-nav li:last-of-type {

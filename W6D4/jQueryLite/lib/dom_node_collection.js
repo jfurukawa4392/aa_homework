@@ -31,6 +31,22 @@ class DOMNodeCollection {
   // jquery passes in index first and binds the call to the element.
     this.elementList[0].forEach(cb);
   }
+
+  children(){
+
+  }
+
+  parent(){
+
+  }
+
+  find(selector){
+
+  }
+
+  remove(){
+
+  }
 }
 
 

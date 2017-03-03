@@ -12,7 +12,6 @@ window.$l = function(selectors){
   return new DOMNodeCollection(liteObj);
 };
 
-
 // html
 //
 // Let's write the method html first. It can optionally receive a string as a parameter.

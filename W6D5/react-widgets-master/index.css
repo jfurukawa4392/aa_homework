@@ -1,0 +1,31 @@
+.bold {
+  font-weight: bolder;
+}
+
+h1 {
+  font-weight: lighter;
+
+}
+
+ul li h1 {
+  display: flex;
+  border: 2px solid black;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+ul li h1:hover {
+    cursor: pointer;
+    background-color: grey;
+}
+ul {
+  display: flex;
+  list-style: none;
+}
+
+article{
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+}

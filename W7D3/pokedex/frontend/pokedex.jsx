@@ -4,7 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 
-import selectAllPokemon from './reducers/selectors';
+import {selectAllPokemon} from './reducers/selectors';
 import * as PokeActions from './actions/pokemon_actions';
 import * as APIUtil from './util/api_util';
 

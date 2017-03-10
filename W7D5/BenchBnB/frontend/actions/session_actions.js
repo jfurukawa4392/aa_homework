@@ -16,7 +16,7 @@ export const logout = () => (dispatch) => {
 };
 
 export const signup = (user) => (dispatch) => {
-  SessionAPI.signup()
+  SessionAPI.signup(user)
             .then( res => dispatch(receiveCurrentUser(res)) )
             .fail( res => dispatch(receiveErrors(res)) );
 };

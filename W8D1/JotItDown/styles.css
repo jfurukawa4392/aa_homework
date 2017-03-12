@@ -1,0 +1,55 @@
+a, nav, img, body, p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+ul>a:hover {
+  text-decoration: underline;
+}
+
+header {
+  position: relative;
+  z-index: 2000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+/*.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}*/
+
+.topnav span {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+img {
+  position: absolute;
+  top: 50;
+  left: 0;
+}
